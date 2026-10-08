@@ -1,0 +1,140 @@
+# memoria starter pack — 8 chapters, 80 questions
+# A life, in questions. Edit freely; add your own packs beside this one.
+pack: starter
+name: The Starter Pack
+description: Eight chapters, eighty questions — a full first pass at a life.
+
+chapters:
+  - id: roots
+    title: Roots
+    questions:
+      - text: "Where did you grow up, and what did it feel like?"
+        follow_ups: ["What did the house look like?", "What sounds do you remember?"]
+      - text: "Who was in your family, and what role did each person play?"
+        follow_ups: ["Who was the funny one?", "Who did you go to when you were hurt?"]
+      - text: "What is your earliest memory?"
+        follow_ups: ["How old were you?", "Is it a happy memory or a hard one?"]
+      - text: "What did your parents do for work?"
+        follow_ups: ["Did you admire their work?", "Did it shape what you wanted to do?"]
+      - text: "What was dinnertime like in your home?"
+        follow_ups: ["What did you eat?", "What did you talk about?"]
+      - text: "What did you do on Sunday afternoons?"
+      - text: "What were you afraid of as a child?"
+        follow_ups: ["When did that fear leave you?"]
+      - text: "Who was your first best friend, and what were they like?"
+      - text: "What is a smell that takes you back to childhood?"
+      - text: "What did your grandparents mean to you?"
+        follow_ups: ["What did they teach you without meaning to?"]
+
+  - id: growing
+    title: Growing
+    questions:
+      - text: "What were you like as a teenager?"
+        follow_ups: ["What did adults misunderstand about you?"]
+      - text: "What did you love doing that you were genuinely good at?"
+      - text: "What was school like for you?"
+        follow_ups: ["Favorite teacher?", "What did they see in you?"]
+      - text: "What did you want to be when you grew up, and why?"
+      - text: "What was the first thing you earned money for, and how did you earn it?"
+      - text: "What was the dumbest thing you did as a young person?"
+        follow_ups: ["What did it teach you?"]
+      - text: "What music did you love at seventeen?"
+        follow_ups: ["What song still gets you?"]
+      - text: "Who broke your heart first, and what did you learn?"
+      - text: "When did you first feel like an adult?"
+      - text: "What did your hometown look like when you left it?"
+
+  - id: love
+    title: Love
+    questions:
+      - text: "How did you meet the love of your life?"
+        follow_ups: ["What did you think of them at first?"]
+      - text: "What did you know about love that you learned the hard way?"
+      - text: "What was your wedding day actually like, underneath the ceremony?"
+      - text: "What is the most thoughtful thing a partner ever did for you?"
+      - text: "What do you wish you had said to someone you loved, that you never said?"
+      - text: "What was hard in your marriage or partnership that you got through anyway?"
+      - text: "What did love look like in your home growing up?"
+      - text: "Who taught you how to love?"
+      - text: "What does love feel like to you, physically, in the body?"
+      - text: "If the people you loved could hear one thing from you now, what would it be?"
+
+  - id: work
+    title: Work
+    questions:
+      - text: "What work did you do with your life?"
+        follow_ups: ["What did you call yourself?", "What did you actually do all day?"]
+      - text: "What was the best job you ever had, and what made it good?"
+      - text: "What was a job you hated, and why did you stay?"
+      - text: "What are you proud of building, fixing, or keeping going?"
+      - text: "Who was the best boss you ever had, and what did they do?"
+      - text: "What did work cost you?"
+      - text: "What advice would you give someone starting in your line of work?"
+      - text: "What skill did you have that never got the credit it deserved?"
+      - text: "What was the funniest thing that ever happened to you at work?"
+      - text: "If money were no object, how would you have spent your working hours?"
+
+  - id: wisdom
+    title: Wisdom
+    questions:
+      - text: "What is the best advice anyone ever gave you?"
+        follow_ups: ["Who gave it?", "Did you take it?"]
+      - text: "What would you tell a young person about money?"
+      - text: "What do you know now that you wish you knew at twenty?"
+      - text: "What is a belief you held strongly and then let go of?"
+        follow_ups: ["What changed your mind?"]
+      - text: "What is true about people that most people learn too late?"
+      - text: "How did you decide the big decisions in your life?"
+        follow_ups: ["Would you change how you decided?"]
+      - text: "What kept you going in the hardest years?"
+      - text: "What is a small thing everyone should learn to do?"
+      - text: "What have you changed your mind about in the last ten years?"
+      - text: "What is the difference between being clever and being wise?"
+
+  - id: regrets
+    title: Regrets
+    questions:
+      - text: "What is something you regret not doing?"
+        follow_ups: ["What stopped you?"]
+      - text: "What is something you regret doing?"
+        follow_ups: ["What would you do differently?"]
+      - text: "Who do you wish you had made peace with?"
+      - text: "What did you not say that you meant to?"
+      - text: "What did you take too seriously?"
+      - text: "What did you not take seriously enough?"
+      - text: "What do you forgive yourself for?"
+      - text: "What do you still carry that you would like to set down?"
+      - text: "What was the biggest risk you took? Was it worth it?"
+      - text: "What door closed on you that, looking back, turned out to be a mercy?"
+
+  - id: joy
+    title: Joy
+    questions:
+      - text: "What made you laugh hardest in your whole life?"
+        follow_ups: ["Who was there?", "Do you laugh about it still?"]
+      - text: "What is your favorite place on earth, and why?"
+      - text: "What is the best meal you ever had?"
+        follow_ups: ["Where were you?", "Who were you with?"]
+      - text: "What do you do when you have a whole free day and no obligations?"
+      - text: "What piece of music moves you every single time?"
+      - text: "What did your children or the children in your life give you?"
+      - text: "What is the most beautiful thing you ever saw?"
+      - text: "What hobby or habit gave you quiet happiness for years?"
+      - text: "What season of the year is yours, and why?"
+      - text: "When were you happiest, all things considered?"
+
+  - id: farewells
+    title: Farewells
+    questions:
+      - text: "What do you want the people you love to know that you have not said?"
+      - text: "What do you want to be remembered for?"
+      - text: "How do you want to be talked about at your memorial?"
+        follow_ups: ["What music should play?", "What should people wear?"]
+      - text: "What would you say to the grandchildren you may never meet?"
+      - text: "What is the story you want told about you that nobody knows yet?"
+      - text: "What are you grateful for, right now, at this table?"
+      - text: "What should people do on your birthday, after you are gone?"
+      - text: "Where would you like your people to gather?"
+      - text: "What do you believe happens after this life?"
+        follow_ups: ["What comforts you about it?"]
+      - text: "What is the last thing you want to say, in your own words, unhurried?"
