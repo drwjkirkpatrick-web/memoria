@@ -1,61 +1,122 @@
 # memoria — a digital gravestone
 
-Record a person's answers, voice, and stories while they are here, so the people
-who come after can still ask, and still hear.
+*Record a person's answers, their voice, and their stories while they are here — so the people who come after can still ask, and still hear.*
 
-**Three abilities:**
-1. **Interview** — 80 guided questions in 8 life chapters, saved word-for-word, tiered PUBLIC/FAMILY/PRIVATE.
-2. **Voice** — a guided reading script captures the voice; a voice-print is measured; a TTS backend speaks in the person's tone (NeuTTS Air for true cloning when its HF gate opens; Kokoro/Piper today).
-3. **Memorial mind** — asks are answered *as the person*, grounded strictly in the archive via EmbeddingGemma 2 + Granite, with an offline grounding checker. **It never invents. If the archive doesn't hold the answer, the memorial says so.**
+---
 
-## Layout
+## Why this exists
 
-```
-memoria/
-├── models.py          Person, Question, Answer, Session, Letter, VoiceSample
-├── packs.py           question packs (starter: 8 chapters × 10)
-├── interview.py       session engine + CLI + store
-├── archive.py         checksummed manifest, tamper detect, exports
-├── timeline.py        chapters + keyword search with citations
-├── letters.py         sealed letters (executor key / on-date rules)
-├── access.py          PUBLIC/FAMILY/PRIVATE tiers × public/family/executor roles
-├── voice_capture.py   Recorder contract, WAV io, quality gate
-├── voicebank.py       guided reading script + clip collection
-├── voice_clone.py     VoicePrint, ToneCloneBackend, clone quality gate
-├── voice_backends.py  NeuTTS (gated) > Kokoro > Piper registry
-├── tts_service.py     FastAPI :8092 (synthesize/voices/health)
-├── voice_verify.py    A/B harness + human MOS checklist
-├── persona.py         style profile + FIRST-RULE no-invention prompt
-├── brain.py           RAG (EmbeddingGemma 2 :8091 + Granite :8090)
-├── finetune.py        LoRA plan (explicit-run only) + acceptance gates
-├── memorial_server.py unified API :8093 (ask/voice/timeline/letters)
-├── visitor_page.py    single-file organic HTML visitor space
-└── keeper.py          backup/restore, verify, dedupe, migration runbook
-```
+Somewhere in a shoebox there is a cassette tape of your grandmother's voice.
+Nobody has a cassette player anymore.
+
+That is the problem memoria solves. All of us are leaving behind less and less
+that lasts — our photos live in cloud accounts that will close, our messages
+in apps that will shut down. And the stories, the real ones, the ones someone
+would actually want to hear again in fifty years? Most of those are never
+recorded at all.
+
+memoria is a small, quiet program that fixes this. A person sits down while
+they are alive, answers questions in their own words, lends their voice —
+and leaves behind a memorial that can still speak as them, long after.
+
+It runs entirely on a small computer in your home. Nothing goes to any cloud.
+Nothing leaves the house.
+
+---
+
+## What a person does
+
+**They answer questions.** Eighty gentle questions in eight chapters of a
+life — roots, growing up, love, work, wisdom, regrets, joy, and farewells.
+*Where did you grow up, and what did it feel like?* *What made you laugh
+hardest in your whole life?* *What do you want the people you love to know
+that you have not said?*
+
+They can skip any question. Stop anytime and pick the thread back up next
+week. Every word is saved the moment it is spoken.
+
+**They lend their voice.** A short reading script — a few sentences designed
+to capture every sound a voice makes. The program measures the voice: its
+pitch, its pace, its energy. Then it learns to speak in that voice's tone, so
+the memorial doesn't just *say* the words — it says them the way *they* said
+them.
+
+**They write letters.** Sealed ones. To a granddaughter, to be opened on her
+40th birthday. To a son, to be opened only when the family executor decides
+the time is right. The program keeps them sealed — truly sealed — until the
+person's own rule says otherwise.
+
+---
+
+## What the people who come after get
+
+A quiet page, reached by a QR code on a physical marker. They type a question:
+
+*"What was your earliest memory?"*
+
+And the memorial answers — in first person, in their grandmother's own words,
+in her voice's tone, with a small note showing exactly which of her recorded
+answers the reply came from.
+
+If the archive doesn't hold an answer, the memorial says so, gently:
+*"I never spoke about that, so I can't tell you — but I'm glad you asked."*
+
+---
+
+## The promise that makes this different
+
+**The memorial never invents.** This is the heart of the whole project,
+built into the code and checked by machine at every answer: it may only speak
+from what the person actually said. It will never guess, never fill in, never
+make up a memory. A memorial that invents is a lie about a person — that is
+the one thing memoria will not do.
+
+**Consent is real.** Every answer is marked public, family, or private.
+Visitors see only what was meant for them. Private words stay private — even
+from the memorial itself.
+
+**Nothing leaks.** Sealed letters stay sealed in every backup and every
+export. Nothing is sent to any cloud. The whole thing lives on your own
+hardware.
+
+**It outlives every format.** Alongside everything else, memoria writes a
+"century file" — plain Markdown text of the person's answers. It needs no
+software, no accounts, nothing but the ability to read. If every computer
+dies, the century file is the gravestone.
+
+---
+
+## What's inside (for the technically curious)
+
+- **The interview** — 80 questions, pause and resume, every word saved as it's spoken
+- **The archive** — checksummed records that detect tampering, with JSON and Markdown exports
+- **The voice** — a reading script, quality gates on every clip, a measured voice-print, and a speaking pipeline (Kokoro/Piper today; NeuTTS Air zero-shot cloning when its access gate opens)
+- **The mind** — retrieval from the person's actual words (EmbeddingGemma 2), answered by a local LLM (Granite 4.0-3B), verified by a grounding checker that refuses rather than risks inventing
+- **The gates** — sealed letters, consent tiers, a real executor key
+- **The keeper's tools** — one-command backups, restore that verifies itself, and a migration runbook for the day the hardware dies
+
+Designed for a Jetson Orin Nano 8GB — a $250 computer the size of a candy bar
+running the whole memorial on 8 gigabytes of memory, alongside a RAG embedding
+model and an agent, with room to spare.
+
+---
 
 ## Quick start
 
 ```bash
-python -m memoria interview --person "Ruth"        # guided interview
-python -m memoria export --person <person_id>      # century file (Markdown)
-python -m pytest tests -q                          # 153 tests
-uvicorn memoria.tts_service:app --port 8092         # the voice
-uvicorn memoria.memorial_server:app --port 8093    # the memorial
+python -m memoria interview --person "Ruth"        # the guided interview
+python -m memoria export --person <person_id>      # the century file
+python -m pytest tests -q                          # 155 tests, all green
+uvicorn memoria.memorial_server:app --port 8093    # the memorial itself
 ```
 
-## The two invariants
+The full operations guide is in `RUNBOOK.md`; the promises in detail are in
+`ETHICS.md`; the 20-step build plan with one commit per step is in
+`PROMPTS.md`.
 
-1. **The memorial never invents.** Every answer traces to retrieved statements
-   (checked offline); refusals are gentle and in first person.
-2. **Tiers are enforced in code.** PUBLIC/FAMILY/PRIVATE content is filtered at
-   every read path — answers, search, letters, the LLM corpus, exports.
+---
 
-Real interview data lives in `~/memoria-data/` — never in this repo.
-See `ETHICS.md` for consent, dignity, and executor duties; `RUNBOOK.md`
-for operations; `PROMPTS.md` for the 20-step build plan.
+*Nothing here is a simulation of a person. It is a record, given willingly in
+their own words — kept safely, and allowed to speak.*
 
-## Status
-
-All 20 build steps complete. 153 tests green. Voice cloning awaits NeuTTS Air's
-HF gate (registry degrades to Kokoro/Piper meanwhile); LoRA fine-tuning is
-plan + data builder, explicit-run only.
+*Light the candle. Sit down. Ask.*
