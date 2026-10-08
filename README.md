@@ -2,6 +2,13 @@
 
 *Record a person's answers, their voice, and their stories while they are here — so the people who come after can still ask, and still hear.*
 
+![memoria](https://img.shields.io/badge/memoria-a%20digital%20gravestone-5a6b52)
+![jetson](https://img.shields.io/badge/Jetson-8GB-blue)
+![local-first](https://img.shields.io/badge/local--first-no%20cloud-2c2a26)
+![python](https://img.shields.io/badge/python-3.10%2B-blue)
+![tests](https://img.shields.io/badge/tests-155%20green-brightgreen)
+![license](https://img.shields.io/badge/license-tbd-lightgrey)
+
 ---
 
 ## Why this exists
