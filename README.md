@@ -7,7 +7,7 @@
 ![local-first](https://img.shields.io/badge/local--first-no%20cloud-2c2a26)
 ![python](https://img.shields.io/badge/python-3.10%2B-blue)
 ![tests](https://img.shields.io/badge/tests-155%20green-brightgreen)
-![license](https://img.shields.io/badge/license-tbd-lightgrey)
+![license](https://img.shields.io/badge/license-MIT-5a6b52)
 
 ---
 
