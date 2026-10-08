@@ -1,5 +1,7 @@
 # memoria — A Digital Gravestone
 
+**STATUS: COMPLETE** — all 20 prompts built, one commit each. 155 tests green.
+
 **Purpose:** a person sits down while they are alive, answers questions in their own
 words, lends their voice, and leaves behind a memorial that can speak as them —
 answer, remember, and tell the stories of a life — for the people who come after.
