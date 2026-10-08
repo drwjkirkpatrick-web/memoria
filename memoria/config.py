@@ -13,6 +13,20 @@ class MemoriaConfig:
     schema_version: int = SCHEMA_VERSION
 
     @property
+    def executor_key(self) -> str:
+        """The executor secret, from the config dir (created on first read)."""
+        import os as _os
+        path = _os.path.join(self.config_dir, "executor_key")
+        if not _os.path.isfile(path):
+            import secrets
+            self.ensure_dirs()
+            with open(path, "w") as f:
+                f.write("mem-exec-" + secrets.token_hex(16))
+            _os.chmod(path, 0o600)
+        with open(path) as f:
+            return f.read().strip()
+
+    @property
     def people_dir(self) -> str:
         return os.path.join(self.data_dir, "people")
 

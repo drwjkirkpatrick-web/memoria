@@ -74,7 +74,8 @@ class Viewer:
     def letters(self, person_id: str) -> list[dict]:
         """Letters through the viewer's lens: tier-filtered and rule-gated."""
         from .letters import LetterBox
-        box = LetterBox(self.config, executor_key="executor" if self.role == "executor" else None)
+        box = LetterBox(self.config,
+                        executor_key=self.config.executor_key if self.role == "executor" else None)
         out = []
         for l in self.store.letters(person_id):
             if not allowed(self.role, l.tier):

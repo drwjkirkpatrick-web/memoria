@@ -41,8 +41,9 @@ def test_executor_letter_sealed_until_executor(env):
     assert "body" not in r          # the sealed body NEVER leaks
     assert r["recipient"] == "daughter"  # metadata visible so family knows it exists
 
-    # executor presents the key → opens
-    box_exec = LetterBox(MemoriaConfig(data_dir=d), executor_key="executor-key-1")
+    # executor presents the REAL key from config → opens
+    box_exec = LetterBox(MemoriaConfig(data_dir=d),
+                         executor_key=MemoriaConfig(data_dir=d).executor_key)
     r2 = box_exec.readable(p.id, l.id)
     assert r2["sealed"] is False
     assert r2["body"].startswith("I was always proud")
@@ -73,7 +74,8 @@ def test_on_date_letter_opens_on_time(env):
 def test_executor_cannot_open_on_date_early(env):
     """The executor key opens executor letters; it does not override dates."""
     store, p, d = env
-    box = LetterBox(MemoriaConfig(data_dir=d), executor_key="k")
+    box = LetterBox(MemoriaConfig(data_dir=d),
+                    executor_key=MemoriaConfig(data_dir=d).executor_key)
     l = box.write(p.id, "son", "For your 60th.",
                   open_rule="on-date", open_date="2060-01-01")
     r = box.readable(p.id, l.id)

@@ -64,7 +64,14 @@ class LetterBox:
         return False  # executor letters never auto-open
 
     def _is_executor(self) -> bool:
-        return bool(self.executor_key)
+        """True only when the presented key matches the one on file."""
+        if not self.executor_key:
+            return False
+        expected = self.config.executor_key
+        if not expected:
+            return False  # no key on file -> nobody may open executor letters
+        import secrets as _secrets
+        return _secrets.compare_digest(str(self.executor_key), expected)
 
     def _unlock_log(self, person_id: str, letter_id: str, by: str, rule: str) -> None:
         entry = {"letter_id": letter_id, "by": by, "rule": rule,
