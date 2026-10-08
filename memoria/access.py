@@ -3,7 +3,7 @@
 Every answer and letter carries a tier: PUBLIC, FAMILY, PRIVATE.
 Every viewer has a role: public, family, executor.
 
-    viewer \ content    PUBLIC   FAMILY   PRIVATE
+    viewer | content    PUBLIC   FAMILY   PRIVATE
     public               yes       no        no
     family               yes       yes       no
     executor             yes       yes       yes
